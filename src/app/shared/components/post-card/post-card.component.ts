@@ -5,16 +5,21 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { AvatarComponent } from '../avatar/avatar.component';
 
 // Models
-import { PostButton, PostButtonObj } from '@models/nav-button.model';
 import { Post } from '@models/post.model';
+import { PostUser } from '@models/user.model';
+import { PostButtonObj } from '@models/nav-button.model';
 
 // Pipes
 import { DateAsAgoPipe } from '../../pipes/date-as-ago.pipe';
 
 // Icons
-import commentIcon from '@svg/comment-icon';
-import repostIcon from '@svg/repost-icon';
-import heartIcon from '@svg/heart-icon';
+import {
+  bookmarkIcon,
+  commentIcon,
+  ellipsisIcon,
+  heartIcon,
+  repostIcon,
+} from '@components/svg-icon/icons';
 
 // Spartan-ng imports
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -27,9 +32,7 @@ import {
   HlmMenuItemSubIndicatorComponent,
   HlmSubMenuComponent,
 } from '@spartan-ng/ui-menu-helm';
-import { PostUser } from '@models/user.model';
 import { SvgIconComponent } from '@components/svg-icon/svg-icon.component';
-import { ellipsisIcon } from '@components/svg-icon/icons';
 
 @Component({
   selector: 'App-post-card',
@@ -56,12 +59,16 @@ export class PostCardComponent {
   post = input.required<Post>();
 
   // Icons
-  commentIcon: PostButton = commentIcon;
-  repostIcon: PostButton = repostIcon;
-  heartIcon: PostButton = heartIcon;
+  // commentIcon: PostButton = commentIcon;
+  // repostIcon: PostButton = repostIcon;
+  // heartIcon: PostButton = heartIcon;
   // ellipsisIcon: PostButton = ellipsisIcon;
 
+  commentIcon = commentIcon;
+  repostIcon = repostIcon;
+  heartIcon = heartIcon;
   ellipsisIcon = ellipsisIcon;
+  bookmarkIcon = bookmarkIcon;
 
   postIcons?: PostButtonObj[];
   user?: PostUser;
@@ -94,6 +101,11 @@ export class PostCardComponent {
         alias: 'like',
         likeCount: this.post()?.likeCount,
         icon: this.heartIcon,
+      },
+      {
+        name: 'bookmark',
+        alias: 'bookmark',
+        icon: this.bookmarkIcon,
       },
     ];
   }

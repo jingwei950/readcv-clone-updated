@@ -34,8 +34,10 @@
       <!-- Post buttons -->
       <div class="mt-4 flex justify-between items-center w-full">
         @for (icon of postIcons; track $index) {
-          <div class="flex items-center justify-start w-full gap-2">
-            <img [src]="icon.icon.light" alt="" class="" />
+          <button
+            class="flex items-center justify-center w-full gap-2 flex-auto relative translate-x-[calc(-50%+12px)]"
+          >
+            <App-svg-icon [icon]="icon.icon" icon_class="w-6 h-6" />
 
             @if (
               (icon.name === "comment" && post().commentCount > 0) ||
@@ -52,15 +54,17 @@
                 }}
               </p>
             }
-          </div>
+          </button>
         }
 
-        <button
-          class="flex items-center justify-start w-full"
-          [brnMenuTriggerFor]="menu"
-        >
-          <App-svg-icon [icon]="ellipsisIcon" icon_class="w-7 h-7" />
-        </button>
+        <div class="flex-1">
+          <button
+            class="flex items-center justify-center w-full"
+            [brnMenuTriggerFor]="menu"
+          >
+            <App-svg-icon [icon]="ellipsisIcon" icon_class="w-6 h-6" />
+          </button>
+        </div>
 
         <ng-template #menu>
           <hlm-menu class="w-56">
