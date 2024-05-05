@@ -1,4 +1,6 @@
-<div class="flex gap-3 p-6 border-b border-gray-400 hover:bg-accent hover:cursor-pointer">
+<div
+  class="flex gap-3 p-6 border-b border-gray-400 hover:bg-accent hover:cursor-pointer"
+>
   <!-- Avatar -->
   <App-avatar [avatarUrl]="user?.avatar" [name]="post().name" />
 
@@ -9,9 +11,15 @@
         {{ user?.name }}
       </button>
       <!-- Username -->
-      &nbsp;<button class="p-0 text-gray-500 font-normal" hlmBtn variant="link">&commat;{{ post().username }}</button>
+      &nbsp;<button class="p-0 text-gray-500 font-normal" hlmBtn variant="link">
+        &commat;{{ post().username }}
+      </button>
       <span class="inline-flex items-center text-gray-500">&nbsp;·&nbsp;</span>
-      <button hlmBtn variant="link" class="p-0 inline-flex items-center text-gray-500 font-normal">
+      <button
+        hlmBtn
+        variant="link"
+        class="p-0 inline-flex items-center text-gray-500 font-normal"
+      >
         {{ post().timestamp.toDate() | momentsAgo }}
       </button>
     </div>
@@ -35,14 +43,23 @@
               (icon.name === "like" && post().likeCount > 0)
             ) {
               <p>
-                {{ icon.name === "comment" ? post().commentCount : icon.name === "repost" ? post().repostCount : post().likeCount }}
+                {{
+                  icon.name === "comment"
+                    ? post().commentCount
+                    : icon.name === "repost"
+                      ? post().repostCount
+                      : post().likeCount
+                }}
               </p>
             }
           </div>
         }
 
-        <button class="flex items-center justify-start w-full" [brnMenuTriggerFor]="menu">
-          <img [src]="ellipsisIcon.light" alt="" />
+        <button
+          class="flex items-center justify-start w-full"
+          [brnMenuTriggerFor]="menu"
+        >
+          <App-svg-icon [icon]="ellipsisIcon" icon_class="w-7 h-7" />
         </button>
 
         <ng-template #menu>

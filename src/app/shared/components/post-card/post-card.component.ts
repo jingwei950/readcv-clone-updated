@@ -15,7 +15,6 @@ import { DateAsAgoPipe } from '../../pipes/date-as-ago.pipe';
 import commentIcon from '@svg/comment-icon';
 import repostIcon from '@svg/repost-icon';
 import heartIcon from '@svg/heart-icon';
-import ellipsisIcon from '@svg/ellipsis-icon';
 
 // Spartan-ng imports
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -29,6 +28,8 @@ import {
   HlmSubMenuComponent,
 } from '@spartan-ng/ui-menu-helm';
 import { PostUser } from '@models/user.model';
+import { SvgIconComponent } from '@components/svg-icon/svg-icon.component';
+import { ellipsisIcon } from '@components/svg-icon/icons';
 
 @Component({
   selector: 'App-post-card',
@@ -40,6 +41,7 @@ import { PostUser } from '@models/user.model';
     DateAsAgoPipe,
     AvatarComponent,
     HlmButtonDirective,
+    SvgIconComponent,
     BrnMenuTriggerDirective,
     HlmMenuComponent,
     HlmMenuItemDirective,
@@ -57,20 +59,42 @@ export class PostCardComponent {
   commentIcon: PostButton = commentIcon;
   repostIcon: PostButton = repostIcon;
   heartIcon: PostButton = heartIcon;
-  ellipsisIcon: PostButton = ellipsisIcon;
+  // ellipsisIcon: PostButton = ellipsisIcon;
+
+  ellipsisIcon = ellipsisIcon;
 
   postIcons?: PostButtonObj[];
   user?: PostUser;
 
   ngOnInit() {
     if (this.post()) {
-      this.user = { name: this.post().name, username: this.post().username, avatar: this.post().avatar };
+      this.user = {
+        name: this.post().name,
+        username: this.post().username,
+        avatar: this.post().avatar,
+      };
     }
     // Post buttons
     this.postIcons = [
-      { name: 'comment', alias: 'comment', commentCount: this.post()?.commentCount, path: '', icon: this.commentIcon },
-      { name: 'repost', alias: 'repost', repostCount: this.post()?.repostCount, icon: this.repostIcon },
-      { name: 'like', alias: 'like', likeCount: this.post()?.likeCount, icon: this.heartIcon },
+      {
+        name: 'comment',
+        alias: 'comment',
+        commentCount: this.post()?.commentCount,
+        path: '',
+        icon: this.commentIcon,
+      },
+      {
+        name: 'repost',
+        alias: 'repost',
+        repostCount: this.post()?.repostCount,
+        icon: this.repostIcon,
+      },
+      {
+        name: 'like',
+        alias: 'like',
+        likeCount: this.post()?.likeCount,
+        icon: this.heartIcon,
+      },
     ];
   }
 
