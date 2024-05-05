@@ -16,7 +16,14 @@ export interface ButtonObj {
 }
 
 export interface NavButtonObj extends ButtonObj {
-  icon: NavButton;
+  icon: string;
+  iconSolid: string;
+  iconSelected?: boolean;
+}
+
+export interface NavButtonObjState {
+  name: string;
+  iconState: boolean;
 }
 
 // TODO: Change name to "PostReactionButtonObj"

@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import {
   ChangeDetectionStrategy,
   Component,
+  SimpleChanges,
   inject,
   input,
   signal,
@@ -36,7 +37,7 @@ export class SvgIconComponent {
   icon_class = input<string>('');
   icon_name = signal<string | null>(null);
 
-  ngOnInit() {
+  ngOnChanges(changes: SimpleChanges) {
     // Extract out the icon name from the icon path
     if (this.icon()) {
       this.icon_name.set(this.icon().split('/').pop()?.split('.')[0]!);
