@@ -2,17 +2,20 @@
 
 import { defineConfig } from 'vite';
 import analog from '@analogjs/platform';
+import viteTsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  publicDir: 'src/assets',
+  root: './',
+  publicDir: 'assets',
   build: {
     target: ['es2020'],
+    outDir: 'dist',
   },
   resolve: {
     mainFields: ['module'],
   },
-  plugins: [analog()],
+  plugins: [analog(), viteTsconfigPaths()],
   test: {
     globals: true,
     environment: 'jsdom',
@@ -20,7 +23,7 @@ export default defineConfig(({ mode }) => ({
     include: ['**/*.spec.ts'],
     reporters: ['default'],
   },
-  define: {
-    'import.meta.vitest': mode !== 'production',
-  },
+  // define: {
+  //   'import.meta.vitest': mode !== 'production',
+  // },
 }));
